@@ -1,4 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DemoLocked } from "@/components/DemoLocked";
+
+// Demonstração desativada até o cliente ativar o website. Mudar para false para voltar a mostrar o site.
+const DEMO_LOCKED = true;
 import { Header } from "@/components/site/Header";
 import { AboutSection, FAQAccordion, FinalCTA, HeroSection, HowItWorksSection, ServicesSection } from "@/components/site/Sections";
 import { Gallery } from "@/components/site/Gallery";
@@ -29,7 +33,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: `${SITE_URL}/og-logo.jpg` },
     ],
   }),
-  component: Index,
+  component: DEMO_LOCKED ? LockedPage : Index,
 });
 
 function Index() {
@@ -51,4 +55,8 @@ function Index() {
       <MobileStickyCTA />
     </>
   );
+}
+
+function LockedPage() {
+  return <DemoLocked business="Ana Lessa Limpezas" />;
 }
